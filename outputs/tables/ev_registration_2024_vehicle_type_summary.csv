@@ -1,0 +1,5 @@
+﻿vehicle_type,ev_count,ratio_percent
+passenger_ev_count,35347,83.27
+van_ev_count,286,0.67
+truck_ev_count,6800,16.02
+special_ev_count,14,0.03
