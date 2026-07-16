@@ -1,0 +1,11 @@
+pandas
+requests
+python-dotenv
+openpyxl
+jupyter
+geopandas
+shapely
+pyproj
+folium
+scikit-learn
+matplotlib
