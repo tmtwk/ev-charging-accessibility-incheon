@@ -1,0 +1,24 @@
+﻿figure_file,path,file_size_bytes,selected_for_report,purpose,source_note
+chargers_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/chargers_by_district.png,77960,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+chargers_per_100_ev_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/chargers_per_100_ev_by_district.png,86749,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+ev_and_chargers_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/ev_and_chargers_by_district.png,108713,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+fast_chargers_per_100_ev_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/fast_chargers_per_100_ev_by_district.png,73286,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+fast_slow_chargers_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/fast_slow_chargers_by_district.png,104836,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+final_ev_and_chargers_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/final_ev_and_chargers_by_district.png,100642,True,군·구별 전기차 등록 대수와 전체 충전기 수 비교,"등록 2026-02-19, 충전소 2026-07"
+final_fast_chargers_per_100_ev_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/final_fast_chargers_per_100_ev_by_district.png,81941,True,전기차 100대당 급속충전기 수,"등록 2026-02-19, 충전소 2026-07"
+final_public_charger_ratio_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/final_public_charger_ratio_by_district.png,87146,True,군·구별 전체 충전기 중 일반 이용 가능 충전기 비율,"등록 2026-02-19, 충전소 2026-07"
+final_public_chargers_per_100_ev_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/final_public_chargers_per_100_ev_by_district.png,88537,True,전기차 100대당 일반 이용 가능 충전기 수,"등록 2026-02-19, 충전소 2026-07"
+k_distance_min_samples_10.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_10.png,64145,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_10_zoom_p95.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_10_zoom_p95.png,79428,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_10_zoom_p99.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_10_zoom_p99.png,78122,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_4.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_4.png,62468,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_4_zoom_p95.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_4_zoom_p95.png,78379,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_4_zoom_p99.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_4_zoom_p99.png,79129,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_5.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_5.png,64920,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_5_zoom_p95.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_5_zoom_p95.png,81890,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_5_zoom_p99.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_5_zoom_p99.png,78575,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_8.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_8.png,63916,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_8_zoom_p95.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_8_zoom_p95.png,77989,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+k_distance_min_samples_8_zoom_p99.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/k_distance_min_samples_8_zoom_p99.png,75689,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+public_charger_ratio_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/public_charger_ratio_by_district.png,92290,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프
+public_chargers_per_100_ev_by_district.png,/Users/iminjun/ev-charging-accessibility-incheon/outputs/figures/public_chargers_per_100_ev_by_district.png,94387,False,최종 핵심 그래프에서는 제외,기존 탐색·중간 산출물 또는 DBSCAN k-distance 보조 그래프

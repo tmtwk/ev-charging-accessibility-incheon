@@ -1,0 +1,12 @@
+﻿item,value,unit,source,note
+원본 충전기 행 수,32954.0,행,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_final.csv,삭제 표시 충전기를 포함한 최종 전처리 전 충전기 단위 행
+삭제 표시 충전기 수,417.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_final.csv,is_deleted=True
+좌표 이상치 수,40.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_final.csv,coordinate_outlier_final=True
+최종 공간 분석 충전기 수,32500.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_2024_district.csv,삭제·좌표 이상치 처리 후 2024 경계 결합 입력
+2024년 경계 매칭 성공 수,32322.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_2024_district.csv,boundary_match_status=matched
+경계 미매칭 수,178.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_2024_district.csv,boundary_match_status=unmatched
+경계 매칭률,99.45,%,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_2024_district.csv,matched / 2024 경계 결합 입력 행 수
+충전소 수,5150.0,개소,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_station_level_spatial.csv,statId 기준 충전소 단위 집계
+전기차 등록 대수,79860.0,대,/Users/iminjun/ev-charging-accessibility-incheon/outputs/tables/district_ev_charging_supply_demand_summary.csv,2026-02-19 등록 기준
+일반 이용 가능 충전기 수,10759.0,기,/Users/iminjun/ev-charging-accessibility-incheon/outputs/tables/district_ev_charging_supply_demand_summary.csv,publicly_accessible=True 집계
+이용 제한 충전기 수,21694.0,기,/Users/iminjun/ev-charging-accessibility-incheon/data/processed/charging_stations_incheon_2024_district.csv,is_limited=True
