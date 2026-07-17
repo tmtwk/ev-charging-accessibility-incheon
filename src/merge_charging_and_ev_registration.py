@@ -16,7 +16,7 @@ CHARGING_SUMMARY_FILE = (
     PROJECT_DIR / "outputs" / "tables" / "charging_district_2024_summary.csv"
 )
 EV_REGISTRATION_FILE = (
-    PROJECT_DIR / "outputs" / "tables" / "ev_registration_2024_district_summary.csv"
+    PROJECT_DIR / "outputs" / "tables" / "ev_registration_2026_district_summary.csv"
 )
 CHARGING_DETAIL_FILE = (
     PROJECT_DIR / "data" / "processed" / "charging_stations_incheon_2024_district.csv"
@@ -56,8 +56,14 @@ EXPECTED_DISTRICTS = {
 }
 
 EXPECTED_CHARGER_TOTAL = 32322
-EXPECTED_EV_TOTAL = 42447
+EXPECTED_EV_TOTAL = 79860
 FAST_CHARGING_THRESHOLD_KW = 50
+
+REGISTRATION_BASE_DATE = "2026-02-19"
+REGISTRATION_BASE_LABEL = "2026년 2월 19일"
+CHARGING_DATA_BASE_DATE = "2026-07"
+CHARGING_DATA_BASE_LABEL = "2026년 7월"
+BOUNDARY_BASE_DATE = "2024-06-30"
 
 CHARGING_INFRA_COLUMNS = [
     "district_2024",
@@ -587,9 +593,9 @@ def add_supply_demand_metrics(df: pd.DataFrame) -> pd.DataFrame:
         result_df["fast_chargers_per_100_ev"].rank(method="min", ascending=True).astype(int)
     )
 
-    result_df["registration_base_date"] = "2024-03-31"
-    result_df["boundary_base_date"] = "2024-06-30"
-    result_df["charging_data_base_date"] = "2026-07"
+    result_df["registration_base_date"] = REGISTRATION_BASE_DATE
+    result_df["boundary_base_date"] = BOUNDARY_BASE_DATE
+    result_df["charging_data_base_date"] = CHARGING_DATA_BASE_DATE
 
     return result_df[OUTPUT_COLUMNS].copy()
 
@@ -697,7 +703,7 @@ def plot_ev_and_chargers(df: pd.DataFrame) -> Path:
         plot_df["total_ev_count"],
         width=width,
         color="#4c78a8",
-        label="전기차 등록 대수(2024-03-31)",
+        label=f"전기차 등록 대수({REGISTRATION_BASE_DATE})",
     )
     ax_charger = ax_ev.twinx()
     charger_bars = ax_charger.bar(
@@ -705,10 +711,13 @@ def plot_ev_and_chargers(df: pd.DataFrame) -> Path:
         plot_df["charger_count"],
         width=width,
         color="#f58518",
-        label="충전기 수(2026-07)",
+        label=f"충전기 수({CHARGING_DATA_BASE_DATE})",
     )
 
-    ax_ev.set_title("군·구별 전기차 등록 대수와 충전기 수 비교(등록 2024-03, 충전 2026-07)")
+    ax_ev.set_title(
+        "군·구별 전기차 등록 대수와 충전기 수 비교"
+        f"(등록 {REGISTRATION_BASE_DATE}, 충전 {CHARGING_DATA_BASE_DATE})"
+    )
     ax_ev.set_xlabel("군·구")
     ax_ev.set_ylabel("전기차 등록 대수")
     ax_charger.set_ylabel("충전기 수")
@@ -765,7 +774,8 @@ def create_figures(df: pd.DataFrame) -> list[Path]:
         plot_metric_bar(
             df,
             "chargers_per_100_ev",
-            "2024년 3월 등록 전기차 100대당 2026년 7월 충전기 수",
+            f"{REGISTRATION_BASE_LABEL} 등록 전기차 100대당 "
+            f"{CHARGING_DATA_BASE_LABEL} 충전기 수",
             "충전기 수 / 전기차 100대",
             CHARGERS_PER_100_EV_FIGURE,
             annotate=True,
@@ -773,7 +783,8 @@ def create_figures(df: pd.DataFrame) -> list[Path]:
         plot_metric_bar(
             df,
             "public_chargers_per_100_ev",
-            "2024년 3월 등록 전기차 100대당 2026년 7월 일반 이용 가능 충전기 수",
+            f"{REGISTRATION_BASE_LABEL} 등록 전기차 100대당 "
+            f"{CHARGING_DATA_BASE_LABEL} 일반 이용 가능 충전기 수",
             "일반 이용 가능 충전기 수 / 전기차 100대",
             PUBLIC_CHARGERS_PER_100_EV_FIGURE,
             annotate=True,
@@ -781,7 +792,8 @@ def create_figures(df: pd.DataFrame) -> list[Path]:
         plot_metric_bar(
             df,
             "fast_chargers_per_100_ev",
-            "2024년 3월 등록 전기차 100대당 2026년 7월 급속 충전기 수",
+            f"{REGISTRATION_BASE_LABEL} 등록 전기차 100대당 "
+            f"{CHARGING_DATA_BASE_LABEL} 급속 충전기 수",
             "급속 충전기 수 / 전기차 100대",
             FAST_CHARGERS_PER_100_EV_FIGURE,
             annotate=False,
@@ -858,7 +870,11 @@ def print_terminal_summary(df: pd.DataFrame, csv_paths: list[Path], figure_paths
     )
 
     print("\n[지표 해석]")
-    print("모든 100대당 지표는 '2024년 3월 등록 전기차 100대당 2026년 7월 충전기 수'입니다.")
+    print(
+        "모든 100대당 지표는 "
+        f"'{REGISTRATION_BASE_LABEL} 등록 전기차 100대당 "
+        f"{CHARGING_DATA_BASE_LABEL} 충전기 수'입니다."
+    )
 
     print("\n[생성 CSV]")
     for path in csv_paths:

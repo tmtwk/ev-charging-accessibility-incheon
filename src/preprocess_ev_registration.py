@@ -9,7 +9,7 @@ RAW_FILE = (
     PROJECT_DIR
     / "data"
     / "raw"
-    / "ev_registration_2024_03_31.csv"
+    / "ev_registration_2026-02-19.csv"
 )
 
 PROCESSED_DIR = PROJECT_DIR / "data" / "processed"
@@ -17,17 +17,17 @@ OUTPUT_TABLE_DIR = PROJECT_DIR / "outputs" / "tables"
 
 CLEAN_FILE = (
     PROCESSED_DIR
-    / "ev_registration_2024_03_31_clean.csv"
+    / "ev_registration_2026_02_19_clean.csv"
 )
 
 DISTRICT_SUMMARY_FILE = (
     OUTPUT_TABLE_DIR
-    / "ev_registration_2024_district_summary.csv"
+    / "ev_registration_2026_district_summary.csv"
 )
 
 VEHICLE_TYPE_SUMMARY_FILE = (
     OUTPUT_TABLE_DIR
-    / "ev_registration_2024_vehicle_type_summary.csv"
+    / "ev_registration_2026_vehicle_type_summary.csv"
 )
 
 ENCODING_CANDIDATES = [
@@ -45,7 +45,6 @@ REQUIRED_COLUMNS = [
     "승합",
     "화물",
     "특수",
-    "계",
 ]
 
 NUMERIC_COLUMNS = [
@@ -57,7 +56,7 @@ NUMERIC_COLUMNS = [
 ]
 
 EXPECTED_DISTRICT_COUNT = 10
-EXPECTED_TOTAL_EV_COUNT = 42447
+EXPECTED_TOTAL_EV_COUNT = 79860
 
 
 def require_input_file(path: Path) -> None:
@@ -122,6 +121,21 @@ def require_columns(
         )
 
 
+def add_total_column_if_missing(dataframe: pd.DataFrame) -> pd.DataFrame:
+    """2026 원본처럼 계 열이 없으면 차종별 합계로 계 열을 만든다."""
+    total_df = dataframe.copy()
+
+    if "계" not in total_df.columns:
+        total_df["계"] = (
+            total_df["승용"]
+            + total_df["승합"]
+            + total_df["화물"]
+            + total_df["특수"]
+        )
+
+    return total_df
+
+
 def validate_fuel_type(dataframe: pd.DataFrame) -> None:
     fuel_values = (
         dataframe["연료별"]
@@ -165,6 +179,9 @@ def convert_numeric_columns(
     converted_df = dataframe.copy()
 
     for column in numeric_columns:
+        if column not in converted_df.columns:
+            continue
+
         numeric_series = pd.to_numeric(
             converted_df[column],
             errors="coerce",
@@ -417,6 +434,7 @@ def main() -> None:
     clean_df = normalize_text_columns(clean_df)
     validate_fuel_type(clean_df)
     clean_df = convert_numeric_columns(clean_df, NUMERIC_COLUMNS)
+    clean_df = add_total_column_if_missing(clean_df)
     validate_row_totals(clean_df)
 
     district_summary = build_district_summary(clean_df)
