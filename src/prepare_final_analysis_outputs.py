@@ -52,6 +52,13 @@ FINAL_MAPS = [
     "district_supply_choropleth_map.html",
 ]
 
+MAP_PREVIEW_FILES = {
+    "station_marker_cluster_map.html": "outputs/figures/map_previews/station_marker_cluster_map_preview.png",
+    "station_capacity_circle_map.html": "outputs/figures/map_previews/station_capacity_circle_map_preview.png",
+    "public_charger_heatmap.html": "outputs/figures/map_previews/public_charger_heatmap_preview.png",
+    "district_supply_choropleth_map.html": "outputs/figures/map_previews/district_supply_choropleth_map_preview.png",
+}
+
 REQUIRED_DISTRICT_COLUMNS = [
     "district_2024",
     "total_ev_count",
@@ -347,12 +354,18 @@ def build_map_inventory() -> pd.DataFrame:
     rows = []
     for filename in FINAL_MAPS:
         path = OUTPUT_MAP_DIR / filename
+        preview_path = PROJECT_DIR / MAP_PREVIEW_FILES[filename]
         rows.append(
             {
                 "map_file": filename,
                 "path": str(path),
                 "exists": path.exists(),
                 "file_size_bytes": path.stat().st_size if path.exists() else 0,
+                "preview_png": str(preview_path),
+                "preview_exists": preview_path.exists(),
+                "preview_file_size_bytes": preview_path.stat().st_size
+                if preview_path.exists()
+                else 0,
                 "purpose": map_descriptions[filename][0],
                 "interpretation_point": map_descriptions[filename][1],
                 "selected_for_report": True,
@@ -365,6 +378,15 @@ def build_map_inventory() -> pd.DataFrame:
         raise FileNotFoundError(
             "최종 지도 HTML 파일이 없거나 크기가 0입니다:\n"
             f"{invalid_rows.to_string(index=False)}"
+        )
+
+    invalid_previews = inventory_df.loc[
+        ~inventory_df["preview_exists"] | inventory_df["preview_file_size_bytes"].eq(0)
+    ]
+    if not invalid_previews.empty:
+        raise FileNotFoundError(
+            "최종 지도 PNG 미리보기가 없거나 크기가 0입니다:\n"
+            f"{invalid_previews.to_string(index=False)}"
         )
 
     inventory_df.to_csv(FINAL_MAP_INVENTORY_FILE, index=False, encoding="utf-8-sig")

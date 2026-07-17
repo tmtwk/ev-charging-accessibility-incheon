@@ -46,26 +46,38 @@
 
 ![일반 이용 가능 충전기 비율](outputs/figures/final_public_charger_ratio_by_district.png)
 
-## 대화형 지도
+## 지도 결과
 
 Folium으로 생성한 HTML 지도는 파일 크기가 커서 Git 추적 대상에서 제외했습니다.
-로컬에서 아래 스크립트를 실행하면 `outputs/maps/`에 다시 생성됩니다.
+대신 각 HTML 지도의 PNG 미리보기를 저장소에 포함했습니다.
 
-```bash
-.venv/bin/python src/create_basic_folium_maps.py
-```
+충전소 위치 MarkerCluster:
 
-생성되는 지도:
+![충전소 위치 MarkerCluster](outputs/figures/map_previews/station_marker_cluster_map_preview.png)
+
+충전소별 충전 규모와 급속충전 비율:
+
+![충전소별 충전 규모 지도](outputs/figures/map_previews/station_capacity_circle_map_preview.png)
+
+일반 이용 가능 충전기 HeatMap:
+
+![일반 이용 가능 충전기 HeatMap](outputs/figures/map_previews/public_charger_heatmap_preview.png)
+
+군·구별 일반 이용 가능 충전기 공급 수준:
+
+![군구별 공급 수준 단계구분도](outputs/figures/map_previews/district_supply_choropleth_map_preview.png)
+
+HTML 대화형 지도는 로컬 산출물로 관리합니다.
 
 - `outputs/maps/station_marker_cluster_map.html`
 - `outputs/maps/station_capacity_circle_map.html`
 - `outputs/maps/public_charger_heatmap.html`
 - `outputs/maps/district_supply_choropleth_map.html`
 
-DBSCAN 탐색 지도는 다음 스크립트 실행 시 생성됩니다.
+필요 시 아래 스크립트로 HTML 지도를 다시 생성할 수 있습니다.
 
 ```bash
-.venv/bin/python src/analyze_station_dbscan.py
+.venv/bin/python src/create_basic_folium_maps.py
 ```
 
 ## DBSCAN 분석 위치
@@ -80,6 +92,10 @@ DBSCAN은 충전소 단위 좌표를 EPSG:5179로 변환해 탐색적으로 수�
 - `outputs/tables/dbscan_parameter_comparison.csv`
 - `outputs/tables/dbscan_exploratory_summary.csv`
 - `data/processed/charging_station_dbscan.csv`
+
+DBSCAN 탐색 지도 미리보기:
+
+![DBSCAN 탐색 지도](outputs/figures/map_previews/dbscan_station_clusters_map_preview.png)
 
 ## 실행 순서
 
