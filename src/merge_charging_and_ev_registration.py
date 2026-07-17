@@ -192,6 +192,18 @@ def print_district_lists(charging_df: pd.DataFrame, registration_df: pd.DataFram
 
 def validate_districts(charging_df: pd.DataFrame, registration_df: pd.DataFrame) -> None:
     """병합 전 군·구 수, 중복, 목록 일치 여부를 검증한다."""
+    charging_district_set = set(charging_df["district_2024"].dropna().tolist())
+    registration_district_set = set(registration_df["district_2024"].dropna().tolist())
+
+    charging_only = sorted(charging_district_set - registration_district_set)
+    registration_only = sorted(registration_district_set - charging_district_set)
+
+    print(f"충전소 데이터에만 있는 군·구: {charging_only}")
+    print(f"등록 데이터에만 있는 군·구: {registration_only}")
+
+    if charging_only or registration_only:
+        raise ValueError("양쪽 군·구 목록이 일치하지 않아 병합하지 않습니다.")
+
     for name, df in [("충전소 데이터", charging_df), ("등록 데이터", registration_df)]:
         districts = set(df["district_2024"].dropna().tolist())
         duplicate_count = int(df["district_2024"].duplicated().sum())
@@ -214,19 +226,6 @@ def validate_districts(charging_df: pd.DataFrame, registration_df: pd.DataFrame)
                 f"{name} 군·구 목록이 기대값과 다릅니다. "
                 f"누락={missing}, 예상 외={unexpected}"
             )
-
-    charging_only = sorted(
-        set(charging_df["district_2024"]) - set(registration_df["district_2024"])
-    )
-    registration_only = sorted(
-        set(registration_df["district_2024"]) - set(charging_df["district_2024"])
-    )
-
-    print(f"충전소 데이터에만 있는 군·구: {charging_only}")
-    print(f"등록 데이터에만 있는 군·구: {registration_only}")
-
-    if charging_only or registration_only:
-        raise ValueError("양쪽 군·구 목록이 일치하지 않아 병합하지 않습니다.")
 
 
 def normalize_boolean_columns(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
