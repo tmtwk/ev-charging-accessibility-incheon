@@ -4,3 +4,7 @@
 __pycache__/
 .ipynb_checkpoints/
 .DS_Store
+
+# Generated interactive maps
+outputs/maps/
+outputs/maps/*.html
